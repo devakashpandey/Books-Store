@@ -1,0 +1,22 @@
+.wrapper{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.sign-up{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-form{
+  background-color:aliceblue;
+  padding: 50px;
+  width: 430px;
+  display: flex;
+  flex-direction: column;
+  border-top-left-radius: 70px;
+  border-bottom-right-radius: 70px;
+
+}

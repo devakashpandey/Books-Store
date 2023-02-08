@@ -1,0 +1,21 @@
+.wrapper{
+height: 100vh;
+display: flex;
+justify-content: center;
+}
+                    
+.sign-in{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+                    
+.signin-form{
+  background-color:aliceblue;
+  padding: 50px;
+  width: 430px;
+  display: flex;
+  flex-direction: column;
+  border-top-right-radius: 70px;
+  border-bottom-left-radius: 70px;
+ }
