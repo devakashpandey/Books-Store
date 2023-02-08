@@ -1,14 +1,21 @@
-import React,{ useState } from 'react';
+import React,{ useEffect, useState } from 'react';
 import "./SignUp.css";
 import { UseFirebaseValue } from "../context/firebaseContext"
+import { useNavigate } from "react-router-dom"
 
 const SignUp = () => {
 
-  const myFirebase = UseFirebaseValue()
-
+  const myFirebase = UseFirebaseValue();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, SetPassword] = useState("")
+
+  useEffect(() => {
+    if(myFirebase.isLogged){
+      navigate("/")
+    }
+  }, [myFirebase, navigate])
 
   let submitForm = async (e) => {
        e.preventDefault()
@@ -17,6 +24,10 @@ const SignUp = () => {
        
        setEmail("");
        SetPassword("");
+  }
+
+  const signIn = () => {
+     navigate("/signin")
   }
 
   return (
@@ -41,6 +52,9 @@ const SignUp = () => {
       </div>
 
         <button type="submit" className="btn btn-primary">Sign up</button>
+        <hr/>
+       <button onClick={signIn} type="submit" className="btn btn-success">Sign in here</button>
+        
     </form>
 
      </div>
