@@ -1,0 +1,19 @@
+.my-card{
+  box-shadow: 0px 4px 10px rgb(70, 70, 70);
+  border-radius: 10px;
+  height: 440px;
+  transition: all 0.3s;
+}
+
+.my-card:hover{
+ transform: scale(1.03);
+}
+
+.my-img{
+object-fit: contain;
+height: 240px;
+}
+
+span2{
+  font-weight: 500;
+}

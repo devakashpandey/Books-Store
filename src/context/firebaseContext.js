@@ -8,8 +8,8 @@ import {
     signInWithPopup,
     onAuthStateChanged,
  } from "firebase/auth"
- import { getFirestore, collection, addDoc } from "firebase/firestore"
- import { getStorage, ref, uploadBytes } from "firebase/storage"
+ import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore"
+ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"
 
 const FirebaseContext = createContext() 
 
@@ -37,7 +37,7 @@ export const FirebaseReducer = ({children}) => {
          if(user) setUser(user)
          else setUser(null)
       })
-   }, [])
+   }, [onAuthStateChanged])
 
  
 
@@ -65,8 +65,14 @@ export const FirebaseReducer = ({children}) => {
          displayName: user.displayName,
          photoURL : user.photoURL
        })
-      }                 
-
+      }             
+      
+   const listAllBooks = () => getDocs(collection(firestore, 'books'))
+      
+   const getImageURL = (path) => {
+      return getDownloadURL(ref(storage, path))
+   }
+   
 
      return(
         <FirebaseContext.Provider value={{ 
@@ -74,7 +80,9 @@ export const FirebaseReducer = ({children}) => {
          signinFunc, 
          signinWithGoogle, 
          isLoggedIn,
-         addNewListing
+         addNewListing,
+         listAllBooks,
+         getImageURL
           }}>
 
            {children}

@@ -18,7 +18,7 @@ function AddBookModal() {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add Books List</Modal.Title>
+          <Modal.Title>Add Book Here</Modal.Title>
         </Modal.Header>
         
         <Modal.Body>

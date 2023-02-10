@@ -1,18 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Home.css"
-import { UseFirebaseValue } from "../context/firebaseContext"
-
+import { UseFirebaseValue} from "../context/firebaseContext"
+import BookCard from '../components/BookCard'
+import CardGroup from 'react-bootstrap/CardGroup';
 
 const Home = () => {
- 
- const signOut = UseFirebaseValue()
+   const firebase =  UseFirebaseValue()
+  
+   const [books, setBooks] = useState([])
+
+   useEffect(() => {
+     firebase.listAllBooks() // it returns a promise
+     .then(data => setBooks(data.docs))  
+   }, [])
 
   return (
      <>
-     <div className='home-div'>
-     <h1>WELCOME TO THE HOME PAGE</h1>
-     <button onClick={() => signOut.myLogout()} className='btn btn-primary'>Log Out</button>
+     <div className='container-fluid text-center mt-5'>
+      <div className='home-div'>
+     <h1>WELCOME TO BOOKS STORE</h1> <br/>
+     <h3>All Books Are Here</h3>
+
+     <div className='books'>
+   <CardGroup>
+        { books.map((book, id) => {
+           return(
+            
+            <div className='book-card' key={id}>
+            <BookCard { ...book.data() }  id={book.id} />
+            </div>
+           ) 
+        }) }
+
+</CardGroup>
+        
      </div>
+     </div>
+     </div>
+
      </>
   )
 }
