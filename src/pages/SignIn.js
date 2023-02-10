@@ -29,17 +29,10 @@ const SignIn = () => {
        console.log(result)
   }
 
-  const googleSignin = () => {
-    return(
-      myFirebase.signinWithGoogle()
-    )
-      
+  const googleSignin = () => myFirebase.signinWithGoogle()
   
-  }
+  const signUp = () =>  navigate("/signup")
 
-  const signUp = () => {
-      navigate("/signup")
-  }
 
   return (
      <>

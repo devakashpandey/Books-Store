@@ -8,6 +8,8 @@ import {
     signInWithPopup,
     onAuthStateChanged,
  } from "firebase/auth"
+ import { getFirestore, collection, addDoc } from "firebase/firestore"
+ import { getStorage, ref, uploadBytes } from "firebase/storage"
 
 const FirebaseContext = createContext() 
 
@@ -23,41 +25,60 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 const firebaseAuth = getAuth(firebaseApp)
 const googleProvider = new GoogleAuthProvider();
+const firestore = getFirestore(firebaseApp)
+const storage = getStorage(firebaseApp)
 
 export const FirebaseReducer = ({children}) => {
 
-   const [user, setuser] = useState("")
+   const [user, setUser] = useState("")
 
    useEffect(() => {
       onAuthStateChanged(firebaseAuth, user => {
-         if(user) setuser(user)
-         else setuser(null)
+         if(user) setUser(user)
+         else setUser(null)
       })
    }, [])
 
-    const signUpFunc = (email, password) =>{
-       return(
-        createUserWithEmailAndPassword(firebaseAuth, email, password)
-       )
-    }
+ 
 
-    const signinFunc = (email, password) =>{
-        return(
-            signInWithEmailAndPassword(firebaseAuth, email, password)
-        )
-     }
+    const signUpFunc = (email, password) =>
+       createUserWithEmailAndPassword(firebaseAuth, email, password)
+    
+    const signinFunc = (email, password) => 
+       signInWithEmailAndPassword(firebaseAuth, email, password)
+    
+    const signinWithGoogle = () => signInWithPopup(firebaseAuth, googleProvider)
+    
+    const isLoggedIn = user ? true : false; 
 
-     const signinWithGoogle = () => {
-         return (
-            signInWithPopup(firebaseAuth, googleProvider)
-         )
-     }
+    const addNewListing = async (BookName, ISBN_Number, Price, coverPic) => {
 
-    const isLoggedIn = user ? true : false 
+       const imageRef = ref(storage, `uploads/images/${Date.now()}-${coverPic.name}`)
+       const uplodeResult = await uploadBytes(imageRef, coverPic)
+       return await addDoc(collection(firestore, 'books'),{
+         BookName,
+         ISBN_Number,
+         Price,
+         imageURL: uplodeResult.ref.fullPath,
+         userID: user.uid,
+         userEmail: user.email,
+         displayName: user.displayName,
+         photoURL : user.photoURL
+       })
+      }                 
+
 
      return(
-        <FirebaseContext.Provider value={{ signUpFunc, signinFunc, signinWithGoogle, isLoggedIn }}>
+        <FirebaseContext.Provider value={{ 
+         signUpFunc, 
+         signinFunc, 
+         signinWithGoogle, 
+         isLoggedIn,
+         addNewListing
+          }}>
+
            {children}
+
         </FirebaseContext.Provider>
      )
   
