@@ -3,16 +3,23 @@ import "./Home.css"
 import { UseFirebaseValue} from "../context/firebaseContext"
 import BookCard from '../components/BookCard'
 import CardGroup from 'react-bootstrap/CardGroup';
+import Loding from '../components/Loding';
 
 const Home = () => {
    const firebase =  UseFirebaseValue()
   
-   const [books, setBooks] = useState([])
+   const [books, setBooks] = useState("")
 
    useEffect(() => {
      firebase.listAllBooks() // it returns a promise
      .then(data => setBooks(data.docs))  
    }, [])
+
+   if(books == ""){
+     return (
+        <Loding />
+     )
+   }
 
   return (
      <>

@@ -8,7 +8,7 @@ import {
     signInWithPopup,
     onAuthStateChanged,
  } from "firebase/auth"
- import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore"
+ import { getFirestore, collection, addDoc, getDocs, doc, getDoc } from "firebase/firestore"
  import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"
 
 const FirebaseContext = createContext() 
@@ -67,11 +67,17 @@ export const FirebaseReducer = ({children}) => {
        })
       }             
       
-   const listAllBooks = () => getDocs(collection(firestore, 'books'))
+   const listAllBooks = async () => await getDocs(collection(firestore, 'books'))
       
    const getImageURL = (path) => {
       return getDownloadURL(ref(storage, path))
    }
+
+   const getDetailsById = async (id) =>{
+        let docRef = doc(firestore, "books", id)
+         const result = await getDoc(docRef)
+         return result;
+   } 
    
 
      return(
@@ -82,7 +88,8 @@ export const FirebaseReducer = ({children}) => {
          isLoggedIn,
          addNewListing,
          listAllBooks,
-         getImageURL
+         getImageURL,
+         getDetailsById
           }}>
 
            {children}

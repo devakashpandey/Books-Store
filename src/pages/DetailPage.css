@@ -1,0 +1,36 @@
+.loding{
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.img{
+ border-radius: 10px;
+ object-fit: cover;
+ height: 20rem;
+}
+
+.heading{
+  font-size: 45px;
+}
+
+.details > p {
+  color: grey;
+  font-weight: 500;
+}
+
+.buy-btn{
+  padding: 8px 22px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  color:white;
+
+  background-color: rgba(1, 159, 1, 0.891);
+}
+
+.buy-btn:hover{
+  background-color: rgba(1, 130, 1, 0.859);
+}

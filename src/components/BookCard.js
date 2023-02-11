@@ -25,10 +25,11 @@ const navigate = useNavigate()
       <Card.Body>
         <Card.Title>{props.BookName}</Card.Title>
         <Card.Text className='mt-3' >
-          This is <span2>{props.BookName}</span2> Full Course By <span2>{props.displayName}</span2>  and 
-          this book cost ₹ <span2>{props.Price}</span2>.
+          This is <span className='text-bold'>{props.BookName}</span> Full Course By <span className='text-bold'>{props.displayName}</span>  and 
+          this book cost ₹<span className='text-bold'>{props.Price}</span>.
         </Card.Text>
-        <Button onClick={(e) => navigate(`book/view/${props.id}`)} variant="primary">View Course</Button>
+        <Button onClick={(e) => navigate(`book/view/${props.id}`)} 
+         variant="primary">View Course</Button>
       </Card.Body>
       </div>
     </Card>
