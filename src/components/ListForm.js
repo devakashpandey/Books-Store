@@ -52,7 +52,7 @@ function ListForm() {
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Price</Form.Label>
         <Form.Control type="number" placeholder="Book Price" 
-        name="Price" value={bookDetails.price} onChange={getData} />
+        name="Price" value={bookDetails.Price} onChange={getData} />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">

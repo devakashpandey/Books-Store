@@ -12,7 +12,7 @@ const SignUp = () => {
   const [password, SetPassword] = useState("")
 
   useEffect(() => {
-    if(myFirebase.isLogged){
+    if(myFirebase.isLoggedIn){
       navigate("/")
     }
   }, [myFirebase, navigate])

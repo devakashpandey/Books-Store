@@ -4,10 +4,12 @@ import { UseFirebaseValue} from "../context/firebaseContext"
 import BookCard from '../components/BookCard'
 import CardGroup from 'react-bootstrap/CardGroup';
 import Loding from '../components/Loding';
+import { useNavigate } from 'react-router-dom';
+
 
 const Home = () => {
    const firebase =  UseFirebaseValue()
-  
+   const navigate = useNavigate()
    const [books, setBooks] = useState("")
 
    useEffect(() => {
@@ -21,10 +23,21 @@ const Home = () => {
      )
    }
 
+   const signOut = () => {
+      firebase.logOut().then(() => {
+        alert("LogOut Successfull!!")
+        navigate("/signin")
+      }).catch((error) => {
+        console.log(error)
+      })
+  }
+
   return (
      <>
      <div className='container-fluid text-center mt-5'>
-      <div className='home-div'>
+     <button className="my-logout-btn" onClick={signOut}>Log out</button><br/>
+     
+     <div className='home-div mt-5'>
      <h1>WELCOME TO BOOKS STORE</h1> <br/>
      <h3>All Books Are Here</h3>
 
@@ -40,10 +53,12 @@ const Home = () => {
         }) }
 
 </CardGroup>
-        
+      
      </div>
      </div>
      </div>
+
+     
 
      </>
   )

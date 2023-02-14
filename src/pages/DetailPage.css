@@ -27,10 +27,34 @@
   border-radius: 5px;
   font-weight: 500;
   color:white;
-
+ cursor: pointer;
   background-color: rgba(1, 159, 1, 0.891);
 }
 
 .buy-btn:hover{
   background-color: rgba(1, 130, 1, 0.859);
 }
+
+.qty{
+  width: 50%;
+}
+
+.main-div{
+  display: flex;
+  width: 90%; 
+  justify-content: center;
+  align-items: center;
+  background-color:aliceblue;
+  padding: 20px;
+  border-radius: 20px;
+  height: 70vh;
+}
+
+.book-details{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 50px; 
+}
+

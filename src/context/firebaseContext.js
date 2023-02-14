@@ -7,9 +7,24 @@ import {
     GoogleAuthProvider, 
     signInWithPopup,
     onAuthStateChanged,
+    signOut
  } from "firebase/auth"
- import { getFirestore, collection, addDoc, getDocs, doc, getDoc } from "firebase/firestore"
- import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"
+
+ import { 
+   getFirestore, 
+   collection, 
+   addDoc, 
+   getDocs, 
+   doc, 
+   getDoc,
+   } from "firebase/firestore"
+
+ import { 
+   getStorage,
+   ref, 
+   uploadBytes,
+   getDownloadURL
+    } from "firebase/storage"
 
 const FirebaseContext = createContext() 
 
@@ -73,12 +88,27 @@ export const FirebaseReducer = ({children}) => {
       return getDownloadURL(ref(storage, path))
    }
 
-   const getDetailsById = async (id) =>{
+   const getDetails = async (id) =>{  
         let docRef = doc(firestore, "books", id)
          const result = await getDoc(docRef)
          return result;
    } 
-   
+
+   const placeOrder = async (bookID, qty) => {
+       const collectionRef = collection(firestore, "books", bookID, "orders");
+       const result = await addDoc(collectionRef, {
+         userID: user.uid,
+         userEmail: user.email,
+         displayName: user.displayName,
+         photoURL : user.photoURL,
+         qty: Number(qty)
+       })
+
+       return result;
+   }
+
+   const logOut = () => signOut(firebaseAuth)
+
 
      return(
         <FirebaseContext.Provider value={{ 
@@ -89,7 +119,10 @@ export const FirebaseReducer = ({children}) => {
          addNewListing,
          listAllBooks,
          getImageURL,
-         getDetailsById
+         getDetails,
+         placeOrder,
+         logOut,
+         user
           }}>
 
            {children}

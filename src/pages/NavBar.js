@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -7,6 +7,7 @@ import "./NavBar.css"
 import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
+
   return (
     <>
     <div className='nav-bar'>
@@ -20,14 +21,18 @@ const NavBar = () => {
           <Nav className="me-auto mynav">
           <NavLink className="my-nav-link" to="/">Home</NavLink>""
            <span className='my-nav-link'> <AddBookModal  /> </span>""
-            <NavLink className="my-nav-link" to="/about">About</NavLink>""
-            <NavLink className="my-nav-link" to="/contact">Contact</NavLink>
+            <NavLink className="my-nav-link" to="/contact">Contact</NavLink>""
+                   
           </Nav>
+          
           </div>
 
         </Navbar.Collapse>
       </Container>
     </Navbar>
+
+ 
+
 
 </div>
     </>

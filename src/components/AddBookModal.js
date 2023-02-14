@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Nav from 'react-bootstrap/Nav';
 import ListForm from './ListForm';
+import "./Modal.css"
 
 function AddBookModal() {
   const [show, setShow] = useState(false);
@@ -13,12 +14,12 @@ function AddBookModal() {
   return (
     <>
       <Nav.Link  onClick={handleShow}>
-        Add Listing
+        Add Books
       </Nav.Link>
 
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add Book Here</Modal.Title>
+        <Modal.Header className='my-modal' closeButton>
+          <Modal.Title className='modal-title'>Add Book Here</Modal.Title>
         </Modal.Header>
         
         <Modal.Body>
