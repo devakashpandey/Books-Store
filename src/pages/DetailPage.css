@@ -58,3 +58,27 @@
   margin: 50px; 
 }
 
+@media (max-width:768px) {
+   .main-div{
+    flex-direction: column;
+    height: 78vh;
+   }
+
+   .img{
+    height: 13rem;
+    margin-top: -30px;
+   }
+}
+
+@media (max-width:500px) {
+
+  .img{
+   height: 10rem;
+   margin-top: -40px;
+  }
+
+  .details{
+    font-size: 15px;
+  }
+}
+

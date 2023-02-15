@@ -6,7 +6,6 @@ import CardGroup from 'react-bootstrap/CardGroup';
 import Loding from '../components/Loding';
 import { useNavigate } from 'react-router-dom';
 
-
 const Home = () => {
    const firebase =  UseFirebaseValue()
    const navigate = useNavigate()
@@ -57,8 +56,6 @@ const Home = () => {
      </div>
      </div>
      </div>
-
-     
 
      </>
   )

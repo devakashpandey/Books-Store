@@ -2,9 +2,7 @@
   font-size: 28px;
   cursor: pointer ;
 }
-.mynav{
-  margin-left: 1rem;
-}
+
 
 .my-nav-link{
  text-decoration: none;
@@ -23,3 +21,9 @@ font-size: 20px;
 .my-nav > .mynav{
   margin-left: 10rem;
 }
+
+@media (max-width:500px) {
+  .logo{
+     font-size: 23px;
+   }             
+  }

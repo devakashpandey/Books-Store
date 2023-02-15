@@ -19,6 +19,7 @@ const navigate = useNavigate()
 
   return (
      <>
+     <div className='my-cards'>
      <Card style={{ width: '19rem', margin:"33px" }} className="mt-5">
       <div className='my-card'>
       <Card.Img className='my-img' variant="" src={url}/>
@@ -33,6 +34,7 @@ const navigate = useNavigate()
       </Card.Body>
       </div>
     </Card>
+    </div>
 
      </>
   )

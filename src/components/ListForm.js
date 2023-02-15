@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { UseFirebaseValue } from "../context/firebaseContext"
+import { UseFirebaseValue } from "../context/firebaseContext";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function ListForm() {
   
@@ -31,10 +34,13 @@ function ListForm() {
 
     let result =  await firebase.addNewListing(BookName, ISBN_Number, Price, coverPic)
 
-    alert("Book created successfully!!")
+    toast("Book added successfully!!")
+
+    eve.target.reset()
  }
 
   return (
+    <>
     <Form onSubmit={handleSubmit}>
 
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -66,7 +72,22 @@ function ListForm() {
         Add Book
       </Button>
 
+      <ToastContainer 
+             position="top-center"
+             autoClose={5000}
+             hideProgressBar={false}
+             newestOnTop={false}
+             closeOnClick
+             rtl={false}
+             pauseOnFocusLoss
+             draggable
+             pauseOnHover
+             theme="dark" />
+   
+
     </Form>
+    </>
+    
   );
 }
 

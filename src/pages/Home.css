@@ -21,5 +21,11 @@ left:35%;
 @media (max-width:500px) {
           .my-logout-btn{
              left:30%;
-   }             
+   }            
+   .home-div > h1{
+      font-size: 22px;
+   }
+   .home-div > h3{
+      font-size: 20px;
+   }
 }

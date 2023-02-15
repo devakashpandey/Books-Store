@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom"
 import "./DetailPage.css"
 import { UseFirebaseValue } from "../context/firebaseContext"
 import Loding from '../components/Loding';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function DetailPage() {
@@ -35,9 +37,11 @@ function DetailPage() {
     )
  }
 
- const placeOrder = async () =>{
+ const placeOrder = async (e) =>{
    const result = await firebase.placeOrder(params.bookID, qty)
-    alert("Order Placed!!")
+    toast("Order Placed!!")
+    setQty(" ")
+    e.target.reset()
  }
 
 
@@ -66,6 +70,18 @@ function DetailPage() {
           </div>
 
         </div>
+        
+        <ToastContainer 
+             position="top-center"
+             autoClose={5000}
+             hideProgressBar={false}
+             newestOnTop={false}
+             closeOnClick
+             rtl={false}
+             pauseOnFocusLoss
+             draggable
+             pauseOnHover
+             theme="dark" />
      </>
   )
 }

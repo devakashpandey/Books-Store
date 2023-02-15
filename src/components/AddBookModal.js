@@ -3,12 +3,12 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Nav from 'react-bootstrap/Nav';
 import ListForm from './ListForm';
-import "./Modal.css"
+import "./Modal.css";
 
 function AddBookModal() {
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => setShow(false) ;
   const handleShow = () => setShow(true);
 
   return (
@@ -33,6 +33,7 @@ function AddBookModal() {
         </Modal.Footer>
 
       </Modal>
+
     </>
   );
 }
