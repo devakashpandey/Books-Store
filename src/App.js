@@ -20,8 +20,6 @@ function App() {
        <Route path="/contact" element={<><NavBar /><Contact /><Footer /></>}/>
        <Route path="/book/view/:bookID" element={<><NavBar /><DetailPage /><Footer /></>}/>
      </Routes>
-
-
    
      </>
   );

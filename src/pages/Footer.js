@@ -3,7 +3,6 @@ import "./Footer.css"
 import { BsFacebook } from "react-icons/bs"
 import { BsInstagram } from "react-icons/bs"
 import { BsLinkedin } from "react-icons/bs"
-import { BsGoogle } from "react-icons/bs"
 import { BsGithub } from "react-icons/bs"
 
 const Footer = () => {
