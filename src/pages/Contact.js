@@ -1,11 +1,31 @@
-import React from 'react'
-import "./Contact.css"
-import { AiFillLinkedin } from "react-icons/ai"
-import { BsGithub } from "react-icons/bs"
-import { BsInstagram } from "react-icons/bs"
-import { BsFacebook } from "react-icons/bs"
+import React, {useRef} from 'react';
+import "./Contact.css";
+import { AiFillLinkedin } from "react-icons/ai";
+import { BsGithub } from "react-icons/bs";
+import { BsInstagram } from "react-icons/bs";
+import { BsFacebook } from "react-icons/bs";
+import emailjs from '@emailjs/browser';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Contact = () => {
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_96y4z7n', 'template_3av5clf', form.current, 'abVycqwIN7UxqtfgM')
+      .then((result) => {
+          toast("Message sent successfully")
+      }, (error) => {
+          console.log(error.text);
+      });
+  
+      e.target.reset();
+
+  };
+
   return (
      <>
      <div className="container mt-5">
@@ -37,17 +57,17 @@ const Contact = () => {
           <div className="social-media">
             <p>Connect with us :</p>
             <div className="social-icons">
-              <a href="">
+              <a href="https://www.facebook.com/akkytricks/" target="_blank">
                 <i> <BsFacebook/></i>
               </a>
-              <a href="https://github.com/devakashpandey" >
-                <i> < BsGithub/></i>
+              <a href="https://github.com/devakashpandey" target="_blank" >
+                <i> <BsGithub/></i>
               </a>
               <a href="https://www.instagram.com/codingwithakash/" target="_blank">
-                <i>< BsInstagram /></i>
+                <i> <BsInstagram /></i>
               </a>
               <a href="https://www.linkedin.com/in/devakashpandey/" target="_blank">
-              <i><AiFillLinkedin/></i>
+              <i>  <AiFillLinkedin/></i>
               </a>
             </div>
           </div>
@@ -57,18 +77,18 @@ const Contact = () => {
           <span className="circle one"></span>
           <span className="circle two"></span>
 
-          <form autoComplete="off">
+          <form autoComplete="off" ref={form} onSubmit={sendEmail}>
             <h3 className="title">Contact us</h3>
             <div className="input-container">
-              <input type="text" name="name" className="input" placeholder='Username' />
+              <input type="text" name="user_name" className="input" placeholder='Username' />
               
             </div>
             <div className="input-container">
-              <input type="email" name="email" className="input"  placeholder='Email'/>
+              <input type="email" name="user_email" className="input"  placeholder='Email'/>
        
             </div>
             <div className="input-container">
-              <input type="tel" name="phone" className="input" placeholder='Phone' />
+              <input type="tel" name="user_number" className="input" placeholder='Phone' />
  
             </div>
             <div className="input-container textarea">
@@ -79,6 +99,17 @@ const Contact = () => {
         </div>
       </div>
       </div>
+             <ToastContainer 
+             position="top-center"
+             autoClose={5000}
+             hideProgressBar={false}
+             newestOnTop={false}
+             closeOnClick
+             rtl={false}
+             pauseOnFocusLoss
+             draggable
+             pauseOnHover
+             theme="dark" />
     </div>
      </>
   )

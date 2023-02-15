@@ -10,6 +10,7 @@ const SignUp = () => {
 
   const [email, setEmail] = useState("");
   const [password, SetPassword] = useState("")
+  const [name, setName] = useState("")
 
   useEffect(() => {
     if(myFirebase.isLoggedIn){
@@ -19,11 +20,12 @@ const SignUp = () => {
 
   let submitForm = async (e) => {
        e.preventDefault()
-       const result = await myFirebase.signUpFunc(email, password)
+       const result = await myFirebase.signUpFunc(name, email, password)
        alert("SignUp Successfull!!")
        
        setEmail("");
        SetPassword("");
+       
   }
 
   const signIn = () => {
@@ -37,12 +39,17 @@ const SignUp = () => {
 
      <form className='signup-form' onSubmit={submitForm}>
           <center><h2>Sign Up</h2></center><br/>
+
+          <div className="mb-3">
+        <label className="form-label">Name</label>
+        <input type="text" className="form-control" 
+         placeholder='Enter name' onChange={(e) => setName(e.target.value)} value={name} />
+      </div>
+
         <div className="mb-3">
          <label className="form-label">Email address</label>
          <input type="email" className="form-control"
          placeholder='Enter email' onChange={(e) =>setEmail(e.target.value)} value={email}/>
-          <div className="form-text">We'll never share your 
-            email with anyone else.</div>
         </div> 
 
       <div className="mb-3">

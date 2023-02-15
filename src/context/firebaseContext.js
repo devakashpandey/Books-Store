@@ -7,7 +7,7 @@ import {
     GoogleAuthProvider, 
     signInWithPopup,
     onAuthStateChanged,
-    signOut
+    signOut,
  } from "firebase/auth"
 
  import { 
@@ -56,8 +56,8 @@ export const FirebaseReducer = ({children}) => {
 
  
 
-    const signUpFunc = (email, password) =>
-       createUserWithEmailAndPassword(firebaseAuth, email, password)
+    const signUpFunc = (displayName, email, password) =>
+       createUserWithEmailAndPassword(firebaseAuth, displayName, email, password)
     
     const signinFunc = (email, password) => 
        signInWithEmailAndPassword(firebaseAuth, email, password)

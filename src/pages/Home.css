@@ -8,8 +8,9 @@ font-size: 18px;
  border-radius: 6px;
  position: relative;
  left:40%; 
- top: 12%;
+ top: 5%;
 }
+
 
 @media (max-width:750px) {
 .my-logout-btn{

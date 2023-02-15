@@ -12,18 +12,15 @@ import DetailPage from './pages/DetailPage';
 function App() {
   return (
      <>
-     <NavBar />
-
+   
      <Routes>
-       <Route path="/" element={<Home />} />
+       <Route path="/" element={<><NavBar /><Home /><Footer /></>} />
        <Route path="/signup" element={<SignUp />}/>
        <Route path="/signin" element={<SignIn />}/>
-       <Route path="/contact" element={<Contact />}/>
-       <Route path="/book/view/:bookID" element={<DetailPage />}/>
-    
+       <Route path="/contact" element={<><NavBar /><Contact /><Footer /></>}/>
+       <Route path="/book/view/:bookID" element={<><NavBar /><DetailPage /><Footer /></>}/>
      </Routes>
 
-     <Footer />
 
    
      </>
